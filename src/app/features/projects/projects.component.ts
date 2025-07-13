@@ -43,7 +43,6 @@ import { ModalComponent } from '../../shared/ui/modal/modal.component';
   viewProviders: [provideIcons({ heroPencil, heroTrash, heroMagnifyingGlass })],
 })
 export class ProjectsComponent implements AfterViewInit {
-  
   @ViewChild('countryCell', { static: false }) countryCell?: TemplateRef<any>;
 
   deletingId = signal<number | null>(null);
