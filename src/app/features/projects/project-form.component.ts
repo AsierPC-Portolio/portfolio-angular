@@ -35,7 +35,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class ProjectFormComponent implements OnChanges {
   @Input() open = false;
   @Input() project: Project | null = null;
-  @Output() close = new EventEmitter<void>();
+  @Output() closed = new EventEmitter<void>();
   @Output() saved = new EventEmitter<void>();
 
   form: FormGroup;
@@ -76,7 +76,7 @@ export class ProjectFormComponent implements OnChanges {
       next: () => {
         this.loading = false;
         this.saved.emit();
-        this.close.emit();
+        this.closed.emit();
       },
       error: () => (this.loading = false),
     });

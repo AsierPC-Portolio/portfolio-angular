@@ -2,7 +2,7 @@
   "hello": "Hola",
   "welcome": "Bienvenido a Portfolio Angular",
   "projects": {
-    "filter": "Filtrar proyectos...",
+    "filter": "Filtrar proyectos (por nombre)...",
     "name": "Nombre",
     "country": "País",
     "start": "Fecha inicio",

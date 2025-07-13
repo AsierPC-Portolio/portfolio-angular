@@ -1,9 +1,12 @@
-
-// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
+import angularEslint from '@angular-eslint/eslint-plugin';
+import angularEslintTemplate from '@angular-eslint/eslint-plugin-template';
+import prettierPlugin from 'eslint-plugin-prettier';
+import tsParser from '@typescript-eslint/parser';
 import storybook from "eslint-plugin-storybook";
-
 import { FlatCompat } from '@eslint/eslintrc';
 const compat = new FlatCompat();
+
+// For more info, see https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 
 export default [{
   ignores: [
@@ -56,8 +59,3 @@ export default [{
     ...angularEslintTemplate.configs.recommended.rules,
   },
 }, ...storybook.configs["flat/recommended"]];
-
-import angularEslint from '@angular-eslint/eslint-plugin';
-import angularEslintTemplate from '@angular-eslint/eslint-plugin-template';
-import prettierPlugin from 'eslint-plugin-prettier';
-import tsParser from '@typescript-eslint/parser';

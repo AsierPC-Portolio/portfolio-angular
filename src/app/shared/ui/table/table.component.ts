@@ -23,6 +23,14 @@ export interface UiTableColumn {
   templateUrl: './table.component.html',
 })
 export class UiTableComponent {
+  get sortKey(): string {
+    const s = this.sort || '';
+    return s.startsWith('-') ? s.substring(1) : s;
+  }
+  get sortDir(): string {
+    const s = this.sort || '';
+    return s.startsWith('-') ? 'desc' : 'asc';
+  }
   @Input() columns: UiTableColumn[] = [];
   @Input() data: any[] = [];
   @Input() loading = false;
@@ -32,16 +40,18 @@ export class UiTableComponent {
   @Input() sort: string = '';
 
   @ContentChild('rowActions', { static: false })
-  rowActionsTemplate?: TemplateRef<any>;
+  rowActionsTemplate: TemplateRef<any> | undefined | null = null;
 
   @Output() sortChange = new EventEmitter<string>();
   @Output() pageChange = new EventEmitter<number>();
 
   onSort(col: UiTableColumn) {
     if (!col.sortable) return;
-    const [current, dir] = this.sort.split(',');
+    const current = this.sortKey;
+    const dir = this.sortDir;
     const newDir = current === col.key && dir === 'asc' ? 'desc' : 'asc';
-    this.sortChange.emit(`${col.key},${newDir}`);
+    const backendSort = newDir === 'desc' ? `-${col.key}` : col.key;
+    this.sortChange.emit(backendSort);
   }
 
   onPageChange(page: number) {

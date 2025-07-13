@@ -1,5 +1,12 @@
-<img [src]="src" [alt]="alt" [ngClass]="{
-  'rounded-full': rounded === 'full',
-  'rounded-md': rounded === 'md',
-  '': rounded === 'none'
-}" [style.width.px]="size" [style.height.px]="size" class="object-cover border border-gray-200" />
+<img
+  [src]="src"
+  [alt]="alt"
+  [ngClass]="{
+    'rounded-full': rounded === 'full',
+    'rounded-md': rounded === 'md',
+    '': rounded === 'none',
+  }"
+  [style.width.px]="size"
+  [style.height.px]="size"
+  class="object-cover border border-gray-200"
+/>

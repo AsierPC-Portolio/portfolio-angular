@@ -1,5 +1,11 @@
-// ...existing code...
-import { Component, signal, effect } from '@angular/core';
+import {
+  Component,
+  signal,
+  effect,
+  ViewChild,
+  TemplateRef,
+  AfterViewInit,
+} from '@angular/core';
 import { ProjectFormComponent } from './project-form.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +18,11 @@ import {
 import { InputComponent as UiInputComponent } from '../../shared/ui/input/input.component';
 import { ButtonComponent as UiButtonComponent } from '../../shared/ui/button/button.component';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { heroPencil, heroTrash } from '@ng-icons/heroicons/outline';
+import {
+  heroPencil,
+  heroTrash,
+  heroMagnifyingGlass,
+} from '@ng-icons/heroicons/outline';
 import { ModalComponent } from '../../shared/ui/modal/modal.component';
 
 @Component({
@@ -30,9 +40,12 @@ import { ModalComponent } from '../../shared/ui/modal/modal.component';
     ModalComponent,
   ],
   templateUrl: './projects.component.html',
-  viewProviders: [provideIcons({ heroPencil, heroTrash })],
+  viewProviders: [provideIcons({ heroPencil, heroTrash, heroMagnifyingGlass })],
 })
-export class ProjectsComponent {
+export class ProjectsComponent implements AfterViewInit {
+  
+  @ViewChild('countryCell', { static: false }) countryCell?: TemplateRef<any>;
+
   deletingId = signal<number | null>(null);
   confirmDeleteProject = signal<Project | null>(null);
   rowActions = [
@@ -45,16 +58,18 @@ export class ProjectsComponent {
   showForm = signal(false);
   editingProject = signal<Project | null>(null);
   projects = signal<Project[]>([]);
+
   columns: UiTableColumn[] = [
     { key: 'name', label: 'projects.name', sortable: true },
     { key: 'countryCode', label: 'projects.country', sortable: true },
     { key: 'startDate', label: 'projects.start', sortable: true },
     { key: 'endDate', label: 'projects.end', sortable: true },
   ];
+
   total = signal(0);
   page = signal(0);
   size = signal(10);
-  sort = signal('name,asc');
+  sort = signal('name');
   filter = signal('');
   loading = signal(false);
 
@@ -63,6 +78,13 @@ export class ProjectsComponent {
     effect(() => {
       this.load();
     });
+  }
+
+  ngAfterViewInit() {
+    const countryCol = this.columns.find((c) => c.key === 'countryCode');
+    if (countryCol && this.countryCell) {
+      countryCol.cellTemplate = this.countryCell;
+    }
   }
 
   load() {
@@ -136,5 +158,4 @@ export class ProjectsComponent {
   onProjectSaved() {
     this.load();
   }
-  
 }

@@ -10,5 +10,5 @@ import { CommonModule } from '@angular/common';
 export class ModalComponent {
   @Input() open = false;
   @Input() title = '';
-  @Output() close = new EventEmitter<void>();
+  @Output() closed = new EventEmitter<void>();
 }

@@ -30,7 +30,7 @@ export class DashboardComponent {
   constructor(private readonly projectService: ProjectService) {
     effect(() => {
       this.projectService
-        .getProjects(undefined, undefined, 0, 1000, 'endDate,desc')
+        .getProjects(undefined, undefined, 0, 1000, 'name')
         .subscribe((res) => {
           this.projects.set(res.content || []);
         });

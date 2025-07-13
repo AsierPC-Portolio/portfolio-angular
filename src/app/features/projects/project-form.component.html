@@ -1,28 +1,65 @@
-<ui-modal [open]="open" [title]="project ? ('projects.edit' | translate) : ('projects.new' | translate)" (close)="close.emit()">
+<ui-modal
+  [open]="open"
+  [title]="
+    project ? ('projects.edit' | translate) : ('projects.new' | translate)
+  "
+  (closed)="closed.emit()"
+>
   <form [formGroup]="form" (ngSubmit)="submit()" class="space-y-4">
     <div>
-      <ui-input id="name" label="{{ 'projects.name' | translate }}" formControlName="name"></ui-input>
+      <ui-input
+        id="name"
+        label="{{ 'projects.name' | translate }}"
+        formControlName="name"
+      ></ui-input>
     </div>
     <div>
       <ui-input
         id="countryCode"
         label="{{ 'projects.country' | translate }}"
         formControlName="countryCode"
-        [error]="form.get('countryCode')?.touched && form.get('countryCode')?.invalid ? ('projects.countryCodeError' | translate) : null"
+        [error]="
+          form.get('countryCode')?.touched && form.get('countryCode')?.invalid
+            ? ('projects.countryCodeError' | translate)
+            : null
+        "
       ></ui-input>
     </div>
     <div class="flex gap-4">
       <div class="flex-1">
-        <ui-input id="startDate" type="date" label="{{ 'projects.start' | translate }}" formControlName="startDate"></ui-input>
+        <ui-input
+          id="startDate"
+          type="date"
+          label="{{ 'projects.start' | translate }}"
+          formControlName="startDate"
+        ></ui-input>
       </div>
       <div class="flex-1">
-        <ui-input id="endDate" type="date" label="{{ 'projects.end' | translate }}" formControlName="endDate"></ui-input>
+        <ui-input
+          id="endDate"
+          type="date"
+          label="{{ 'projects.end' | translate }}"
+          formControlName="endDate"
+        ></ui-input>
       </div>
     </div>
     <div class="flex justify-end gap-2 mt-6">
-      <ui-button type="button" color="secondary" (click)="close.emit()" (keydown)="close.emit()">{{ 'common.cancel' | translate }}</ui-button>
-      <ui-button type="submit" color="primary" [disabled]="form.invalid || loading" [loading]="loading">
-        {{ project ? ('common.save' | translate) : ('common.create' | translate) }}
+      <ui-button
+        type="button"
+        color="secondary"
+        (click)="closed.emit()"
+        (keydown)="closed.emit()"
+        >{{ "common.cancel" | translate }}</ui-button
+      >
+      <ui-button
+        type="submit"
+        color="primary"
+        [disabled]="form.invalid || loading"
+        [loading]="loading"
+      >
+        {{
+          project ? ("common.save" | translate) : ("common.create" | translate)
+        }}
       </ui-button>
     </div>
   </form>

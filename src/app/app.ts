@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
+export class AppComponent {
   private readonly translate = inject(TranslateService);
 
   constructor() {
