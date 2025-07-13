@@ -1,0 +1,17 @@
+{
+  "generatorName": "typescript-angular",
+  "inputSpec": "http://localhost:8080/api-docs",
+  "outputDir": "src/app/api",
+  "globalProperty": {
+    "models": "",
+    "apis": ""
+  },
+  "additionalProperties": {
+    "ngVersion": "17.0.0",
+    "providedInRoot": true,
+    "stringEnums": true,
+    "withSeparateModelsAndApi": true,
+    "apiModulePrefix": "Api",
+    "modelModulePrefix": "Model"
+  }
+}

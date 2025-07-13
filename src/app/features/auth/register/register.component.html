@@ -1,0 +1,70 @@
+<div class="flex min-h-screen items-center justify-center bg-gray-50">
+  <div class="absolute top-4 right-4">
+    <app-lang-switcher></app-lang-switcher>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="bg-white p-8 rounded shadow-md w-full max-w-sm">
+    <h2 class="text-2xl font-bold mb-6 text-center">{{ 'auth.register.title' | translate }}</h2>
+    <div class="mb-4">
+      <ui-input
+        id="firstName"
+        type="text"
+        label="{{ 'auth.register.firstName' | translate }}"
+        placeholder=""
+        [error]="form.get('firstName')?.invalid && form.get('firstName')?.touched ? ('auth.register.firstNameError' | translate) : null"
+        [disabled]="loading"
+        formControlName="firstName"
+      ></ui-input>
+    </div>
+    <div class="mb-4">
+      <ui-input
+        id="lastName"
+        type="text"
+        label="{{ 'auth.register.lastName' | translate }}"
+        placeholder=""
+        [error]="form.get('lastName')?.invalid && form.get('lastName')?.touched ? ('auth.register.lastNameError' | translate) : null"
+        [disabled]="loading"
+        formControlName="lastName"
+      ></ui-input>
+    </div>
+    <div class="mb-4">
+      <ui-input
+        id="email"
+        type="email"
+        label="{{ 'auth.register.email' | translate }}"
+        placeholder=""
+        [error]="form.get('email')?.invalid && form.get('email')?.touched ? ('auth.register.emailError' | translate) : null"
+        [disabled]="loading"
+        formControlName="email"
+      ></ui-input>
+    </div>
+    <div class="mb-4">
+      <ui-input
+        id="password"
+        type="password"
+        label="{{ 'auth.register.password' | translate }}"
+        placeholder=""
+        [error]="form.get('password')?.invalid && form.get('password')?.touched ? ('auth.register.passwordError' | translate) : null"
+        [disabled]="loading"
+        formControlName="password"
+      ></ui-input>
+    </div>
+    <div class="mb-6">
+      <ui-input
+        id="confirmPassword"
+        type="password"
+        label="{{ 'auth.register.confirmPassword' | translate }}"
+        placeholder=""
+        [error]="form.hasError('mismatch') && form.get('confirmPassword')?.touched ? ('auth.register.confirmPasswordError' | translate) : null"
+        [disabled]="loading"
+        formControlName="confirmPassword"
+      ></ui-input>
+    </div>
+    <ui-button type="submit" [disabled]="form.invalid || loading" [loading]="loading" color="primary">
+      {{ loading ? ('auth.register.loading' | translate) : ('auth.register.button' | translate) }}
+    </ui-button>
+    <div *ngIf="error" class="text-red-600 mt-4 text-center">{{ error | translate }}</div>
+    <div class="mt-4 text-center">
+      <a routerLink="/login" class="text-blue-600 hover:underline">{{ 'auth.register.loginLink' | translate }}</a>
+    </div>
+  </form>
+</div>

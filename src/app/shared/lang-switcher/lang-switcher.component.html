@@ -1,0 +1,52 @@
+<div class="relative inline-block text-left">
+  <button
+    type="button"
+    class="flex items-center gap-2 border border-gray-300 rounded-full px-3 py-1.5 text-sm bg-white shadow transition-all duration-200 hover:bg-gray-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+    (click)="toggleMenu()"
+    aria-haspopup="listbox"
+    [attr.aria-expanded]="menuOpen()"
+  >
+    <img
+      [src]="'https://flagcdn.com/24x18/' + (currentLangData?.flag ?? 'us') + '.png'"
+      width="24"
+      height="18"
+      class="inline-block align-middle rounded-sm border border-gray-200"
+      alt="{{ currentLangData?.label ?? 'English' }} flag"
+    />
+    <span class="font-medium">{{ currentLangData?.label ?? 'English' }}</span>
+    <svg class="ml-1 w-4 h-4 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </button>
+  <ul
+    *ngIf="menuOpen()"
+    class="absolute z-20 mt-2 min-w-[140px] bg-white border border-gray-200 rounded-xl shadow-xl py-1 animate-fade-in"
+    role="listbox"
+    style="right:0;"
+  >
+    <li
+      *ngFor="let lang of langs"
+      (click)="setLang(lang.code)"
+      class="flex items-center gap-2 px-3 py-2 cursor-pointer rounded-lg transition-all duration-150 hover:bg-blue-50 hover:text-blue-700"
+      [attr.aria-selected]="selectedLang() === lang.code"
+    >
+      <img
+        [src]="'https://flagcdn.com/24x18/' + lang.flag + '.png'"
+        width="24"
+        height="18"
+        class="inline-block align-middle rounded-sm border border-gray-200"
+        alt="{{ lang.label }} flag"
+      />
+      <span class="font-medium">{{ lang.label }}</span>
+    </li>
+  </ul>
+</div>
+<style>
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 0.18s cubic-bezier(.4,0,.2,1);
+}
+</style>

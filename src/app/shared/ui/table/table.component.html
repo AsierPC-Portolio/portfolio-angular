@@ -1,0 +1,54 @@
+<div class="overflow-x-auto rounded shadow bg-white">
+  <table class="min-w-full text-sm">
+    <thead>
+      <tr class="bg-gray-100">
+        <th *ngFor="let col of columns"
+            class="p-3"
+            [class.cursor-pointer]="col.sortable"
+            (click)="onSort(col)"
+            tabindex="0"
+            (keydown.enter)="onSort(col)">
+          {{ col.label | translate }}
+        </th>
+        <th *ngIf="rowActionsTemplate" class="p-3 text-center align-middle">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data" class="border-b hover:bg-gray-50">
+        <ng-container *ngFor="let col of columns">
+          <td class="p-3 text-center align-middle">
+            <ng-container *ngIf="!col.cellTemplate; else customCell">
+              {{ row[col.key] }}
+            </ng-container>
+            <ng-template #customCell>
+              <ng-container *ngTemplateOutlet="col.cellTemplate; context: { $implicit: row }"></ng-container>
+            </ng-template>
+          </td>
+        </ng-container>
+        <td class="p-3 text-center align-middle" *ngIf="rowActionsTemplate" style="width: 80px; min-width: 80px; max-width: 80px; vertical-align: middle;">
+          <ng-container *ngTemplateOutlet="rowActionsTemplate; context: { $implicit: row }"></ng-container>
+        </td>
+      </tr>
+      <tr *ngIf="!loading && data.length === 0">
+        <td [attr.colspan]="columns.length" class="p-3 text-center text-gray-400">No data</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2 p-4 border-t bg-gray-50">
+    <div class="text-sm text-gray-500">
+      <span *ngIf="total > 0">
+        {{ 'table.showing' | translate:{ from: (page * size) + 1, to: getTo(), total: total } }}
+      </span>
+      <span *ngIf="total === 0">{{ 'table.noData' | translate }}</span>
+    </div>
+    <div class="flex items-center gap-1">
+      <button class="rounded-full p-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-200" [disabled]="page === 0" (click)="onPageChange(page - 1)" aria-label="Anterior">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+      </button>
+      <span class="mx-2 text-gray-700 font-medium">{{ page + 1 }}</span>
+      <button class="rounded-full p-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-200" [disabled]="(page + 1) * size >= total" (click)="onPageChange(page + 1)" aria-label="Siguiente">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+      </button>
+    </div>
+  </div>
+</div>

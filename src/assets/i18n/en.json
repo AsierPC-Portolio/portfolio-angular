@@ -1,0 +1,80 @@
+
+{
+  "hello": "Hello",
+  "welcome": "Welcome to Portfolio Angular",
+  "projects": {
+    "filter": "Filter projects...",
+    "name": "Name",
+    "country": "Country",
+    "start": "Start date",
+    "end": "End date",
+    "actions": "Actions",
+    "view": "View",
+    "empty": "No projects found.",
+    "total": "Total",
+    "countries": "Countries",
+    "last": "Last project",
+    "new": "New project",
+    "edit": "Edit project",
+    "deleteTitle": "Delete project",
+    "deleteConfirm": "Are you sure you want to delete the project '{{name}}'? This action cannot be undone.",
+    "countryCodeError": "Country code must be exactly 2 letters"
+  },
+  "common": {
+    "edit": "Edit",
+    "save": "Save",
+    "create": "Create",
+    "cancel": "Cancel",
+    "delete": "Delete"
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "button": "Login",
+      "loading": "Logging in...",
+      "invalid": "Invalid credentials",
+      "registerLink": "Don't have an account? Register"
+    },
+    "register": {
+      "title": "Register",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "button": "Register",
+      "loading": "Registering...",
+      "error": "Registration failed. Please try again.",
+      "loginLink": "Already have an account? Login",
+      "firstNameError": "First name is required.",
+      "lastNameError": "Last name is required.",
+      "emailError": "Valid email is required.",
+      "passwordError": "Password must be at least 6 characters.",
+      "confirmPasswordError": "Passwords do not match."
+    }
+  },
+  "dashboard": {
+    "title": "Welcome to your Dashboard",
+    "subtitle": "This is your main area. You can customize this card, add widgets, stats, etc.",
+    "user": {
+      "name": "John Doe",
+      "email": "john.doe@email.com"
+    }
+  },
+  "topbar": {
+    "brand": "Portfolio",
+    "logout": "Logout",
+    "title": "Welcome to your Dashboard",
+    "subtitle": "This is your main area. You can customize this card, add widgets, stats, etc.",
+    "user": {
+      "name": "John Doe",
+      "email": "john.doe@email.com"
+    }
+  },
+  "table": {
+    "showing": "Showing {{from}}–{{to}} of {{total}}",
+    "noData": "No data"
+  }
+}

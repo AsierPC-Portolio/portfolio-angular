@@ -1,0 +1,79 @@
+{
+  "hello": "Hola",
+  "welcome": "Bienvenido a Portfolio Angular",
+  "projects": {
+    "filter": "Filtrar proyectos...",
+    "name": "Nombre",
+    "country": "País",
+    "start": "Fecha inicio",
+    "end": "Fecha fin",
+    "actions": "Acciones",
+    "view": "Ver",
+    "empty": "No hay proyectos.",
+    "total": "Total",
+    "countries": "Países",
+    "last": "Último proyecto",
+    "new": "Nuevo proyecto",
+    "edit": "Editar proyecto",
+    "deleteTitle": "Borrar proyecto",
+    "deleteConfirm": "¿Seguro que quieres borrar el proyecto '{{name}}'? Esta acción no se puede deshacer.",
+    "countryCodeError": "El código de país debe tener exactamente 2 letras"
+  },
+  "common": {
+    "edit": "Editar",
+    "save": "Guardar",
+    "create": "Crear",
+    "cancel": "Cancelar",
+    "delete": "Borrar"
+  },
+  "auth": {
+    "login": {
+      "title": "Iniciar sesión",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "button": "Entrar",
+      "loading": "Entrando...",
+      "invalid": "Credenciales inválidas",
+      "registerLink": "¿No tienes cuenta? Regístrate"
+    },
+    "register": {
+      "title": "Registro",
+      "firstName": "Nombre",
+      "lastName": "Apellidos",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "button": "Registrarse",
+      "loading": "Registrando...",
+      "error": "No se pudo registrar. Inténtalo de nuevo.",
+      "loginLink": "¿Ya tienes cuenta? Inicia sesión",
+      "firstNameError": "El nombre es obligatorio.",
+      "lastNameError": "Los apellidos son obligatorios.",
+      "emailError": "El correo electrónico es obligatorio y debe ser válido.",
+      "passwordError": "La contraseña debe tener al menos 6 caracteres.",
+      "confirmPasswordError": "Las contraseñas no coinciden."
+    }
+  },
+  "dashboard": {
+    "title": "Bienvenido a tu Panel",
+    "subtitle": "Esta es tu área principal. Puedes personalizar esta tarjeta, añadir widgets, estadísticas, etc.",
+    "user": {
+      "name": "John Doe",
+      "email": "john.doe@email.com"
+    }
+  },
+  "topbar": {
+    "brand": "Portfolio",
+    "logout": "Cerrar sesión",
+    "title": "Bienvenido a tu Panel",
+    "subtitle": "Esta es tu área principal. Puedes personalizar esta tarjeta, añadir widgets, estadísticas, etc.",
+    "user": {
+      "name": "John Doe",
+      "email": "john.doe@email.com"
+    }
+  },
+    "table": {
+    "showing": "Mostrando {{from}}–{{to}} de {{total}}",
+    "noData": "Sin datos"
+  }
+}

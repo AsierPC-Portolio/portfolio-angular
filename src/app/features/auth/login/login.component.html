@@ -1,0 +1,37 @@
+<div class="flex min-h-screen items-center justify-center bg-gray-50">
+  <div class="absolute top-4 right-4">
+    <app-lang-switcher></app-lang-switcher>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="bg-white p-8 rounded shadow-md w-full max-w-sm">
+    <h2 class="text-2xl font-bold mb-6 text-center">{{ 'auth.login.title' | translate }}</h2>
+    <div class="mb-4">
+      <ui-input
+        id="email"
+        type="email"
+        label="{{ 'auth.login.email' | translate }}"
+        placeholder=""
+        [error]="form.get('email')?.invalid && form.get('email')?.touched ? ('auth.login.email' | translate) : null"
+        [disabled]="loading"
+        formControlName="email"
+      ></ui-input>
+    </div>
+    <div class="mb-6">
+      <ui-input
+        id="password"
+        type="password"
+        label="{{ 'auth.login.password' | translate }}"
+        placeholder=""
+        [error]="form.get('password')?.invalid && form.get('password')?.touched ? ('auth.login.password' | translate) : null"
+        [disabled]="loading"
+        formControlName="password"
+      ></ui-input>
+    </div>
+    <ui-button type="submit" [disabled]="form.invalid || loading" [loading]="loading" color="primary">
+      {{ loading ? ('auth.login.loading' | translate) : ('auth.login.button' | translate) }}
+    </ui-button>
+    <div *ngIf="error" class="text-red-600 mt-4 text-center">{{ error | translate }}</div>
+    <div class="mt-4 text-center">
+      <a routerLink="/register" class="text-blue-600 hover:underline">{{ 'auth.login.registerLink' | translate }}</a>
+    </div>
+  </form>
+</div>
