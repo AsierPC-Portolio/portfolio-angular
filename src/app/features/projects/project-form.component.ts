@@ -77,6 +77,9 @@ export class ProjectFormComponent implements OnChanges {
         this.loading = false;
         this.saved.emit();
         this.closed.emit();
+        if (!data.id) {
+          this.form.reset();
+        }
       },
       error: () => (this.loading = false),
     });
