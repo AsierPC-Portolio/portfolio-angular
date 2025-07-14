@@ -64,6 +64,7 @@
         width="24"
         height="18"
         class="inline-block align-middle rounded-sm border border-gray-200 bg-white"
+        [alt]="code + ' flag'"
       />
       <span *ngIf="!project.countryCode" class="text-xs text-gray-500">{{
         project.countryCode
