@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 export interface UiTableColumn {
   key: string;
@@ -19,7 +20,7 @@ export interface UiTableColumn {
 @Component({
   selector: 'ui-table',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, SpinnerComponent],
   templateUrl: './table.component.html',
 })
 export class UiTableComponent {
