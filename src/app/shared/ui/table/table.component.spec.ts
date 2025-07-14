@@ -5,6 +5,42 @@ import { TranslateModule, TranslateService, TranslateStore, TranslateLoader } fr
 import { of } from 'rxjs';
 
 describe('UiTableComponent', () => {
+  it('should emit sortChange with desc when sorting the same column and dir is asc', () => {
+    spyOn(component.sortChange, 'emit');
+    component.sort = 'id'; // current === col.key
+    const col = { key: 'id', label: 'ID', sortable: true };
+    // dir será 'asc' por defecto
+    component.onSort(col);
+    expect(component.sortChange.emit).toHaveBeenCalledWith('-id');
+  });
+  it('should emit sortChange with asc when sorting a different column', () => {
+    spyOn(component.sortChange, 'emit');
+    component.sort = 'name'; // current !== col.key
+    const col = { key: 'id', label: 'ID', sortable: true };
+    component.onSort(col);
+    expect(component.sortChange.emit).toHaveBeenCalledWith('id');
+  });
+  it('should return sortDir as desc when sort starts with dash', () => {
+    component.sort = '-id';
+    expect(component.sortDir).toBe('desc');
+  });
+  it('should return sortKey without dash when sort starts with dash', () => {
+    component.sort = '-id';
+    expect(component.sortKey).toBe('id');
+  });
+  it('should emit sortChange with correct value when onSort is called on sortable column', () => {
+    spyOn(component.sortChange, 'emit');
+    const col = { key: 'id', label: 'ID', sortable: true };
+    component.onSort(col);
+    expect(component.sortChange.emit).toHaveBeenCalledWith('id');
+  });
+
+  it('should not emit sortChange when onSort is called on non-sortable column', () => {
+    spyOn(component.sortChange, 'emit');
+    const col = { key: 'id', label: 'ID', sortable: false };
+    component.onSort(col);
+    expect(component.sortChange.emit).not.toHaveBeenCalled();
+  });
   it('should render empty state when no data', () => {
     component.data = [];
     component.columns = [
